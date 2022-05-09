@@ -7,6 +7,24 @@
         <style type="text/css">  
         @import "loginLayout.css"; 
         </style>
+
+        <script type="text/javascript">
+        function checkData(){
+          alert("確認中");
+          var lg = document.getElementById("login").value;
+          var pd = document.getElementById("password").value;
+          
+          if ((lg == "admin") && (pd == "admin")){  
+            alert("正確");
+          }
+          
+          else{
+            alert("錯誤");
+          }
+        }
+        //submitBtn.addEventListener("click", checkData);
+
+        </script>
     
     </head>
 
@@ -31,7 +49,7 @@
             <form>
               <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
               <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-              <input type="submit" class="fadeIn fourth" value="Log In">
+              <input type="submit" class="fadeIn fourth" value="LogIn" onclick="checkData();" />
             </form>
         
             <!-- Remind Passowrd -->
