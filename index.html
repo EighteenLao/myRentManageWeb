@@ -1,47 +1,137 @@
 <!doctype html>
 <html>
     <head>
-       
-        <title>套房出租登入系統</title>
-
-        <style type="text/css">  
-        @import "loginLayout.css"; 
+        <style>
+            .selectRoomNumber{
+                visibility:hidden;
+            }
         </style>
-    
+
     </head>
 
     <body>
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!------ Include the above in your HEAD tag ---------->
-        
-        <div class="wrapper fadeInDown">
-          <div id="formContent">
-            <!-- Tabs Titles -->
-        
-            <!-- Icon -->
-            <div class="fadeIn first">
-              <img src="P_20180413_145455.jpg" id="icon" alt="User Icon"  />
-              <h1>套房管理系統登入</h1>
+        <div id = "dataDisplay">
+            房客資料:
+           
+            <table>
+                <tr>
+                    <td>房號</td>
+                    <td>|</td>
+                    <td>姓名</td>
+                    <td>|</td>
+                    <td>身分證字號</td>
+                    <td>|</td>
+                    <td>電話</td>
+                    <td>|</td>
+                    <td>住址</td>
+                </tr>
+                <tr v-for="(item,index) in member">
+                    <td>{{item.roomNumber}}</td>
+                    <td>|</td>
+                    <td>{{item.memberName}}</td>
+                    <td>|</td>
+                    <td>{{item.id}}</td>
+                    <td>|</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td>|</td>
+                    <td>{{item.address}}</td>
+                </tr>
+                
+            </table>
+
+            
+
+            <div>
+                <input type="text" v-model="member.memberName">
+                <button v-on:click="changeData">刪除</button>
             </div>
-        
-            <!-- Login Form -->
-            <form>
-              <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-              <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-              <input type="submit" class="fadeIn fourth" value="Log In">
-            </form>
-        
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-              <a class="underlineHover" href="#">Forgot Password?</a>
+
+
+
+            <div class = "selectRoomNumber">
+                刪除房客之房號
+                <select v-model="select">
+                    <option disabled>-- 請選擇 --</option>
+                    <option value="3B">3B</option>
+                    <option value="3C">3C</option>
+                    <option value="4A">4A</option>
+                    <option value="4B">4B</option>
+                    <option value="4C">4C</option>
+                    <option value="5A">5A</option>
+                    <option value="5B">5B</option>
+                </select>
             </div>
-        
-          </div>
         </div>
 
-        
     </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var memberData = new Vue({
+            el:'#dataDisplay',
+            data:{
+                member : [
+                    {
+                        roomNumber: '3B',
+                        memberName: '陳一停',
+                        id: 'A234567890',
+                        phoneNumber: '0588465285',
+                        address: 'taipei'
+                    },
+                    {
+                        roomNumber: '3C',
+                        memberName: '張二花',
+                        id: 'D987654320',
+                        phoneNumber: '84554218515',
+                        address: 'taichung'
+                    },
+                    {
+                        roomNumber: '4A',
+                        memberName: '李三珊',
+                        id: 'F123456789',
+                        phoneNumber: '8855443322',
+                        address: 'hsinchu'
+                    },
+                    {
+                        roomNumber: '4B',
+                        memberName: '陳四星',
+                        id: 'C555666887',
+                        phoneNumber: '9988776655',
+                        address: 'Taoyuan'
+                    },
+                    {
+                        roomNumber: '4C',
+                        memberName: '震五藍',
+                        id: 'W128546789',
+                        phoneNumber: '7744552211',
+                        address: 'hsinchu'
+                    },
+                    {
+                        roomNumber: '5A',
+                        memberName: '毛六金',
+                        id: 'B775566554',
+                        phoneNumber: '1111111111',
+                        address: 'tokyo'
+                    },
+                    {
+                        roomNumber: '5B',
+                        memberName: '美七美',
+                        id: 'E999999999',
+                        phoneNumber: '8888888888',
+                        address: 'usa'
+                    }
+                ]
+            },
+            methods:{
+                changeData(){
+                    console.log(memberData.member[0].memberName)
+                }
+            }  
+        })
+
+        
+        
+    </script>
+    
 </html>
