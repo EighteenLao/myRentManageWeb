@@ -2,9 +2,7 @@
 <html>
     <head>
         <style>
-            .selectRoomNumber{
-                visibility:hidden;
-            }
+            
         </style>
 
     </head>
@@ -40,28 +38,35 @@
                 
             </table>
 
-            
-
-            <div>
-                <input type="text" v-model="member.memberName">
-                <button v-on:click="changeData">刪除</button>
-            </div>
-
-
-
-            <div class = "selectRoomNumber">
-                刪除房客之房號
-                <select v-model="select">
+            <div class = "roomNumber">
+                欲修改房客之房號
+                <select v-model="selectRoomNumber">
                     <option disabled>-- 請選擇 --</option>
-                    <option value="3B">3B</option>
-                    <option value="3C">3C</option>
-                    <option value="4A">4A</option>
-                    <option value="4B">4B</option>
-                    <option value="4C">4C</option>
-                    <option value="5A">5A</option>
-                    <option value="5B">5B</option>
+                    <option value=0>3B</option>
+                    <option value=1>3C</option>
+                    <option value=2>4A</option>
+                    <option value=3>4B</option>
+                    <option value=4>4C</option>
+                    <option value=5>5A</option>
+                    <option value=6>5B</option>
                 </select>
             </div>
+            <div class = "memberInfo">
+                欲修改房客之資訊
+                <select v-model="selectmemberInfo">
+                    <option disabled>-- 請選擇 --</option>
+                    <option value="memberName">姓名</option>
+                    <option value="id">身分證字號</option>
+                    <option value="phoneNumber">電話號碼</option>
+                    <option value="address">戶籍地址</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" v-model="newText">
+                <button v-on:click="changeData">修改</button>
+            </div>
+
+
         </div>
 
     </body>
@@ -71,6 +76,9 @@
         var memberData = new Vue({
             el:'#dataDisplay',
             data:{
+                selectRoomNumber : "",
+                selectmemberInfo:"",
+                newText:"",
                 member : [
                     {
                         roomNumber: '3B',
@@ -125,7 +133,24 @@
             },
             methods:{
                 changeData(){
-                    console.log(memberData.member[0].memberName)
+                    switch(this.selectmemberInfo){
+                        case 'memberName':
+                            this.member[this.selectRoomNumber].memberName = this.newText;
+                            break;
+
+                        case 'id':
+                            this.member[this.selectRoomNumber].id = this.newText;
+                            break;
+
+                        case 'phoneNumber':
+                            this.member[this.selectRoomNumber].phoneNumber = this.newText;
+                            break;
+
+                        case 'address':
+                            this.member[this.selectRoomNumber].address = this.newText;
+                            break;
+                    }
+                    
                 }
             }  
         })
