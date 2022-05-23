@@ -72,13 +72,18 @@
     </body>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
+    <script type="module">
+        import DATAJSON from './memberData.json' assert { type: "json" };
+
         var memberData = new Vue({
             el:'#dataDisplay',
             data:{
                 selectRoomNumber : "",
                 selectmemberInfo:"",
                 newText:"",
+
+                member: DATAJSON
+                /*                
                 member : [
                     {
                         roomNumber: '3B',
@@ -130,6 +135,7 @@
                         address: 'usa'
                     }
                 ]
+                */
             },
             methods:{
                 changeData(){
