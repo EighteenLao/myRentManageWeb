@@ -1,0 +1,15 @@
+header a {
+  font-weight: bold;
+}
+
+.headerFixed {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+  min-width: 100%;
+  opacity: 0.94;
+  -webkit-transition: opacity .5s ease-out;
+  transition: opacity .5s ease-out;
+}

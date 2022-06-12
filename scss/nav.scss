@@ -1,0 +1,20 @@
+nav{
+    background-color: rgb(215, 215, 215);
+    .nav{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }  
+}
+
+.navFixed {
+    background-color: rgb(215, 215, 215);
+    z-index: 2;          
+    position: fixed;      
+    top: 50px;
+    left: 0;
+    margin-top: 0;
+    min-width: 100%;
+    opacity: 0.94;
+    transition: opacity .5s ease-out; 
+    
+}

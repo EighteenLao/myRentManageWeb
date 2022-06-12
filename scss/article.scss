@@ -1,0 +1,22 @@
+article{
+    padding-bottom: 40px;
+
+    .videoInfo{
+        background-color:rgb(232, 233, 233);
+        height:auto;
+        text-align: center;
+        
+        .videoImgContainer{
+            background-color: black;
+            img{
+                width:100%;  
+            }  
+            
+        }
+        
+        .videoInfocontainer {
+            text-align: center;
+            padding: 10px 20px;
+        }
+    }
+}
