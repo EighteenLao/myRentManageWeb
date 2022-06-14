@@ -46,7 +46,7 @@
         <div class="displayNewMember">
             <?php
                 // 連線到資料庫
-                require_once('connectMemberDate.php');
+                require_once('connect.php');
 
                 if(array_key_exists('send', $_POST)){
                     if(isset($_POST['memberId'])){

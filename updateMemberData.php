@@ -49,7 +49,7 @@
         <div class="displayInfo">
             <?php
                 // 連線到資料庫\
-                require_once('connectMemberDate.php');
+                require_once('connect.php');
                 
                 if(isset($_POST['roomNum'])){
                     $roomNum=$_POST["roomNum"];

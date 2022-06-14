@@ -2,7 +2,7 @@
   $server_name = 'localhost';
   $username = 'root';
   $password = '';
-  $db_name = 'test';
+  $db_name = 'roommemberdatabase';
 
   // mysqli 的四個參數分別為：伺服器名稱、帳號、密碼、資料庫名稱
   $conn = new mysqli($server_name, $username, $password, $db_name);

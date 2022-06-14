@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                 <?php
-                  require_once('connectMemberDate.php');
+                  require_once('connect.php');
 
                   $sql = "SELECT * FROM member"; //SQL語法
                   $result = mysqli_query($conn, $sql) or die('MySQL query error'); //對目標資料庫進行查詢
