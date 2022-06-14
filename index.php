@@ -9,9 +9,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
 
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/nav.css">
+    <script src="js/loadingHeaderAndNav.js"></script>
     
     <style>
       #dataDisplay{
@@ -63,12 +65,5 @@
         </div>
     </article>
 </body>
-
-<script>
-  $(document).ready(function(){
-    $("header").load("header.html");
-    $("nav").load("nav.html");
-  });
-</script>
 
 </html>

@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/nav.css">
+    <script src="js/loadingHeaderAndNav.js"></script>
 
     <style>
     .deleteMemberContainer, .displayInfo{
@@ -97,11 +98,4 @@
         </div>
     </article>
 </body>
-
-<script>
-  $(document).ready(function(){
-    $("header").load("header.html");
-    $("nav").load("nav.html");
-  });
-</script>
 </html>
