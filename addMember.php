@@ -69,7 +69,7 @@
 
                        
                         if ($roomNum == NULL){
-                            echo "<script>alert('建立失敗')</script>";
+                            echo "<script>alert('無輸入房號')</script>";
                         }
                         else{
                             //確認是否已有資料
@@ -77,7 +77,7 @@
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
                             $row = mysqli_fetch_array($result);
                             
-                            if ($row['name'] != '無'){
+                            if ($row['name'] != NULL){
                                 echo "<script>alert('已有房客資料')</script>";
                             }
                             else{

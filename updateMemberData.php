@@ -69,15 +69,15 @@
 
                     if(array_key_exists('searchBtn', $_POST)){
                         $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
-                            $result = mysqli_query($conn, $sql) or die('MySQL query error');
-                            while($row = mysqli_fetch_array($result)){
-                                echo '修改對象' . " <br>";
-                                echo $row['roomNum'] . " ";
-                                echo $row['name'] . " ";
-                                echo $row['id'] . " ";
-                                echo $row['phone'] . " ";
-                                echo $row['date'] . " <br>";
-                            }
+                        $result = mysqli_query($conn, $sql) or die('MySQL query error');
+                        while($row = mysqli_fetch_array($result)){
+                            echo '修改對象' . " <br>";
+                            echo $row['roomNum'] . " ";
+                            echo $row['name'] . " ";
+                            echo $row['id'] . " ";
+                            echo $row['phone'] . " ";
+                            echo $row['date'] . " <br>";
+                        }
                     }
 
                     if(array_key_exists('sendTextBtn', $_POST)) {
@@ -88,16 +88,16 @@
                             $editItem = $_POST['editItem'];
                             $editText=$_POST["updateText"];
                             
-                            $sql1 = "UPDATE `member` SET $editItem =\"".$editText."\" WHERE roomNum = \"".$roomNum."\"";
+                            $sql1 = "UPDATE `member` SET $editItem =\"".$editText."\" WHERE roomNum = \"".$roomNum."\";";
                             $result1 = mysqli_query($conn, $sql1) or die('MySQL query error');
 
                             //確認建立成功
                             $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
                             while($row = mysqli_fetch_array($result)){
-                                echo "<br>修改成功<br>";
+                                echo "<script>alert('修改成功')</script>";
 
-                                echo "<br<table border=\1\">";
+                                echo "<br><table border=\1\">";
                                 echo "<thead>";
                                 echo "<tr>";
                                 echo "<th>房號</th>";

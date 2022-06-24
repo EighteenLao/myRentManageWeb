@@ -21,6 +21,7 @@
     if($row){
       echo '[{"result":"登入成功", 
               "link":"http://127.0.0.1/myRentManageWeb/index.php"}]';
+      $_SESSION['is_Login'] = 'true';
       //header(("Location: index.php"));
     }
     else{
