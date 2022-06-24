@@ -1,4 +1,7 @@
 <?php
+  header("Access-Control-Allow-Origin:*");
+  header("Content-type:application/json");
+
   session_start(); 
   // 連線到資料庫
   // require_once適合用在:PHP程式執行期間，會多次引入相同的檔案。
@@ -16,18 +19,20 @@
     $row = $result->fetch_assoc();
     
     if($row){
-      $_SESSION['is_login'] = TRUE;
-      header(("Location: index.php"));
+      echo '[{"result":"登入成功", 
+              "link":"http://127.0.0.1/myRentManageWeb/index.php"}]';
+      //header(("Location: index.php"));
     }
     else{
-      $_SESSION['is_login'] = FALSE;
-      $_SESSION['msg'] = '登入失敗，請確認帳號密碼!!';
-      header(("Location: login.html"));
+      echo '[{"result":"登入失敗",
+              "link":"http://127.0.0.1/myRentManageWeb/login.html"}]';
+      //header(("Location: login.html"));
     }
   }
   else{
-    $_SESSION['msg'] = '請輸入帳號密碼!!';
-    header(("Location: login.html"));
+    echo '[{"result":"未填寫帳號或密碼",
+            "link":"http://127.0.0.1/myRentManageWeb/login.html"}]';
+    //header(("Location: login.html"));
   }
 
 ?>

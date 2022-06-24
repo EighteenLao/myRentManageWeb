@@ -20,6 +20,7 @@
         justify-content:center;
         align-items:center;
         font-size : 20px;
+        margin:2%;
       }
 
     </style>
@@ -27,14 +28,23 @@
 
 <body>
     <header></header>
-
     <nav></nav>
 
     <article>
         <div class = "addMemberContainer">
             <form name="form1" method="post">
                 <br><h1>新增房客資訊</h1><br>
-                <br>房號 : <input name = "memberRoomNum">
+                <br>房號 : <select name="memberRoomNum">
+                                <option value="">--請選擇--</option>
+                                <option value="3B">3B</option>
+                                <option value="3C">3C</option>
+                                <option value="4A">4A</option>
+                                <option value="4B">4B</option>
+                                <option value="4C">4C</option>
+                                <option value="4D">4D</option>
+                                <option value="5A">5A</option>
+                                <option value="5B">5B</option>
+                          </select>
                 <br>姓名 : <input name = "memberName">
                 <br>身分證 : <input name = "memberId">
                 <br>電話 : <input name = "memberPhone">
@@ -57,43 +67,54 @@
                         $phone=$_POST["memberPhone"];
                         $date=$_POST["memberDate"];
 
-                        if ($roomNum == NULL && $name == NULL){
-                            echo '建立失敗';
+                       
+                        if ($roomNum == NULL){
+                            echo "<script>alert('建立失敗')</script>";
                         }
                         else{
-                            //新增
-                            $sql = "INSERT INTO `member` (`roomNum`, `id`, `name`, `phone`, `date`) VALUES (\"".$roomNum."\",\"".$id."\",\"".$name."\",\"".$phone."\",\"".$date."\");";
+                            //確認是否已有資料
+                            $sql = "SELECT `name` FROM member WHERE roomNum = \"".$roomNum."\";";
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
-
-                            //確認建立成功
-                            $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
-                            $result = mysqli_query($conn, $sql) or die('MySQL query error');
-                            while($row = mysqli_fetch_array($result)){
-                                echo "<br>創建成功<br>";
-
-                                echo "<table border=\1\">";
-                                echo "<thead>";
-                                echo "<tr>";
-                                echo "<th>房號</th>";
-                                echo "<th>姓名</th>";
-                                echo "<th>身分證字號</th>";
-                                echo "<th>電話</th>";
-                                echo "<th>入住時間</th>";
-                                echo "</tr>";
-                                echo "</thead>";
-                                
-                                echo "<tbody>";
-                                echo "<tr>";
-                                echo "<td>".$row['roomNum']."</td>";
-                                echo "<td>".$row['name']."</td>";
-                                echo "<td>".$row['id']."</td>";
-                                echo "<td>".$row['phone']."</td>";
-                                echo "<td>".$row['date']."</td>";
-                                echo "</tr>";
-                                echo "</tbody>";
-                                echo "</table><br>";
+                            $row = mysqli_fetch_array($result);
+                            
+                            if ($row['name'] != '無'){
+                                echo "<script>alert('已有房客資料')</script>";
                             }
+                            else{
+                                //新增
+                                //$sql = "INSERT INTO `member` (`roomNum`, `id`, `name`, `phone`, `date`) VALUES (\"".$roomNum."\",\"".$id."\",\"".$name."\",\"".$phone."\",\"".$date."\");";
+                                $sql = "UPDATE `member` SET `id` =\"".$id."\", `name` =\"".$name."\", `phone` =\"".$phone."\", `date` =\"".$date."\" WHERE roomNum = \"".$roomNum."\"";
+                                $result = mysqli_query($conn, $sql) or die('MySQL query error');
+
+                                //確認建立成功
+                                $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
+                                $result = mysqli_query($conn, $sql) or die('MySQL query error');
+                                while($row = mysqli_fetch_array($result)){
+                                    echo "<script>alert('建立成功')</script>";
+
+                                    echo "<table border=\1\"> <thead> <tr>";
+                                    echo "<th>房號</th>";
+                                    echo "<th>姓名</th>";
+                                    echo "<th>身分證字號</th>";
+                                    echo "<th>電話</th>";
+                                    echo "<th>入住時間</th>";
+                                    echo "</tr> </thead>";
+
+                                    echo "<tbody>";
+                                    echo "<tr>";
+                                    echo "<td>".$row['roomNum']."</td>";
+                                    echo "<td>".$row['name']."</td>";
+                                    echo "<td>".$row['id']."</td>";
+                                    echo "<td>".$row['phone']."</td>";
+                                    echo "<td>".$row['date']."</td>";
+                                    echo "</tr>";
+                                    echo "</tbody>";
+                                    echo "</table><br>";
+                                }
+                            }
+                            
                         }
+                        
                     }
                 }
                 

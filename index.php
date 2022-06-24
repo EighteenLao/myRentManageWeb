@@ -21,6 +21,7 @@
         justify-content:center;
         align-items:center;
         font-size : 30px;
+        margin: 2%;
       }
     </style>
 </head>

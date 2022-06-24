@@ -17,6 +17,7 @@
         justify-content:center;
         align-items:center;
         font-size : 20px;
+        margin:2%;
     }
 
     </style>
@@ -30,7 +31,17 @@
         <div class = "deleteMemberContainer">
             <form name="form1" method="post">
                 <br><h1>移除房客資訊</h1><br>
-                <br>欲刪除房客之房號: <input name="memberRoomNum">
+                <br>欲刪除房客之房號: <select name="memberRoomNum">
+                                            <option value="">--請選擇--</option>
+                                            <option value="3B">3B</option>
+                                            <option value="3C">3C</option>
+                                            <option value="4A">4A</option>
+                                            <option value="4B">4B</option>
+                                            <option value="4C">4C</option>
+                                            <option value="4D">4D</option>
+                                            <option value="5A">5A</option>
+                                            <option value="5B">5B</option>
+                                    </select>
                 <br><br><input type="submit" name='send' value="送出">
                 <input type="submit" name="exit" value="返回">
             </form>
@@ -46,7 +57,7 @@
                         $roomNum = $_POST["memberRoomNum"];
 
                         if ($roomNum == NULL){
-                            echo '無輸入資料';
+                            echo "<script>alert('無輸入房號')</script>";
                         }
                         else{
                             //確認刪除目標
@@ -79,6 +90,7 @@
                             }
 
                             //刪除
+                            /*
                             $sql = "DELETE FROM member WHERE roomNum = \"".$roomNum."\";";
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
 
@@ -86,7 +98,11 @@
                                 echo '刪除成功';
                             } else {
                                 echo '查無資料';
-                            }
+                            }*/
+                            $sql = "UPDATE `member` SET `id` ='', `name`='無', `phone`='', `date` ='' WHERE roomNum = \"".$roomNum."\"";
+                            $result = mysqli_query($conn, $sql) or die('MySQL query error');
+
+                            echo "<script>alert('刪除成功')</script>";
                         }
                     }
                 }

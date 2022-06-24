@@ -17,6 +17,7 @@
         justify-content:center;
         align-items:center;
         font-size : 20px;
+        margin:2%;
     }
     </style>
 </head>
@@ -30,7 +31,18 @@
         <div class = "updateMemberContainer">
             <form name="form1" method="post">
                 <br><h1>修改房客資訊</h1><br>
-                <br>輸入房號 : <input name = "roomNum">
+                <br>輸入房號 : <select name="roomNum">
+                                    <option value="">--請選擇--</option>
+                                    <option value="3B">3B</option>
+                                    <option value="3C">3C</option>
+                                    <option value="4A">4A</option>
+                                    <option value="4B">4B</option>
+                                    <option value="4C">4C</option>
+                                    <option value="4D">4D</option>
+                                    <option value="5A">5A</option>
+                                    <option value="5B">5B</option>
+                                </select>
+                <input type="submit" name="searchBtn" value="查詢">
 
                 <br>欲修改項目:
                 <input type="radio" name="editItem" value="name" />
@@ -54,13 +66,9 @@
                 
                 if(isset($_POST['roomNum'])){
                     $roomNum=$_POST["roomNum"];
-                    
-                    if(array_key_exists('sendTextBtn', $_POST)) {
-                        if($roomNum == NULL){
-                            echo '無輸入資料';
-                        }
-                        else{
-                            $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
+
+                    if(array_key_exists('searchBtn', $_POST)){
+                        $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
                             while($row = mysqli_fetch_array($result)){
                                 echo '修改對象' . " <br>";
@@ -70,7 +78,13 @@
                                 echo $row['phone'] . " ";
                                 echo $row['date'] . " <br>";
                             }
+                    }
 
+                    if(array_key_exists('sendTextBtn', $_POST)) {
+                        if($roomNum == NULL){
+                            echo "<script>alert('無輸入房號')</script>";
+                        }
+                        else{
                             $editItem = $_POST['editItem'];
                             $editText=$_POST["updateText"];
                             
