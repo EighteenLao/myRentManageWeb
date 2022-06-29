@@ -97,7 +97,7 @@
                             } else {
                                 echo '查無資料';
                             }*/
-                            $sql = "UPDATE `member` SET `id` ='', `name`='無', `phone`='', `date` ='' WHERE roomNum = \"".$roomNum."\"";
+                            $sql = "UPDATE `member` SET `id` ='', `name`='NULL', `phone`='', `date` ='' WHERE roomNum = \"".$roomNum."\"";
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
 
                             echo "<script>alert('刪除成功')</script>";

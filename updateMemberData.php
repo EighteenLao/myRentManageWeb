@@ -70,6 +70,7 @@
                     if(array_key_exists('searchBtn', $_POST)){
                         $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
                         $result = mysqli_query($conn, $sql) or die('MySQL query error');
+<<<<<<< HEAD
                         $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。
                       
                         echo $row['roomNum'] . " ";
@@ -78,6 +79,16 @@
                         echo $row['phone'] . " ";
                         echo $row['date'] . " <br>";
                        
+=======
+                        while($row = mysqli_fetch_array($result)){
+                            echo '修改對象' . " <br>";
+                            echo $row['roomNum'] . " ";
+                            echo $row['name'] . " ";
+                            echo $row['id'] . " ";
+                            echo $row['phone'] . " ";
+                            echo $row['date'] . " <br>";
+                        }
+>>>>>>> 5155a821fd1236e9bc86794f0242f88cccd24b92
                     }
 
                     if(array_key_exists('sendTextBtn', $_POST)) {
@@ -88,12 +99,13 @@
                             $editItem = $_POST['editItem'];
                             $editText=$_POST["updateText"];
                             
-                            $sql1 = "UPDATE `member` SET $editItem =\"".$editText."\" WHERE roomNum = \"".$roomNum."\"";
+                            $sql1 = "UPDATE `member` SET $editItem =\"".$editText."\" WHERE roomNum = \"".$roomNum."\";";
                             $result1 = mysqli_query($conn, $sql1) or die('MySQL query error');
 
                             //確認建立成功
                             $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
+<<<<<<< HEAD
                             $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。
                            
                             echo "<br>修改成功<br>";
@@ -120,6 +132,33 @@
                             echo "</tbody>";
                             echo "</table><br>";
                             
+=======
+                            while($row = mysqli_fetch_array($result)){
+                                echo "<script>alert('修改成功')</script>";
+
+                                echo "<br><table border=\1\">";
+                                echo "<thead>";
+                                echo "<tr>";
+                                echo "<th>房號</th>";
+                                echo "<th>姓名</th>";
+                                echo "<th>身分證字號</th>";
+                                echo "<th>電話</th>";
+                                echo "<th>入住時間</th>";
+                                echo "</tr>";
+                                echo "</thead>";
+                                
+                                echo "<tbody>";
+                                echo "<tr>";
+                                echo "<td>".$row['roomNum']."</td>";
+                                echo "<td>".$row['name']."</td>";
+                                echo "<td>".$row['id']."</td>";
+                                echo "<td>".$row['phone']."</td>";
+                                echo "<td>".$row['date']."</td>";
+                                echo "</tr>";
+                                echo "</tbody>";
+                                echo "</table><br>";
+                            }
+>>>>>>> 5155a821fd1236e9bc86794f0242f88cccd24b92
                         }
                     }
                 

@@ -22,7 +22,12 @@
     if($row){
       echo '[{"result":"登入成功", 
               "link":"http://127.0.0.1/myRentManageWeb/index.php"}]';
+<<<<<<< HEAD
       $_SESSION['is_Login'] = "true";
+=======
+      $_SESSION['is_Login'] = 'true';
+      //header(("Location: index.php"));
+>>>>>>> 5155a821fd1236e9bc86794f0242f88cccd24b92
     }
     else{
       echo '[{"result":"登入失敗",
