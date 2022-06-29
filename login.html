@@ -40,7 +40,9 @@
   
       <!-- Login Form -->
       <!--<form method="POST" action="http://127.0.0.1/myRentManageWeb/verify.php">-->
-      <form id="form1" onsubmit="return false" action="##" method="post">
+      <!--onsubmit:提交表單所執行的js function(這邊的function為阻止form表單提交事件)-->
+      <!--action: 將表單內容送至XXX(##為同一頁面上)-->
+      <form id="form1" onsubmit="return false" action="##" method="post">   
         <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
         <input type="submit" class="fadeIn fourth" value="Log In" onclick="LoginUser()">

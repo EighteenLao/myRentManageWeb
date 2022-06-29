@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/nav.css">
     <script src="js/loadingHeaderAndNav.js"></script>
-    
+  
     <style>
       #dataDisplay{
         display:flex;
@@ -28,7 +28,6 @@
 
 <body>
     <header></header>
-    
     <nav></nav>
 
     <article>
@@ -45,20 +44,27 @@
                 </thead>
                 <tbody>
                 <?php
-                  require_once('connect.php');
+                  session_start();
+                  if(isset($_SESSION['is_Login'])&& $_SESSION['is_Login'] == "true"){
+                    require_once('connect.php');
 
-                  $sql = "SELECT * FROM member"; //SQL語法
-                  $result = mysqli_query($conn, $sql) or die('MySQL query error'); //對目標資料庫進行查詢
+                    $sql = "SELECT * FROM member"; //SQL語法
+                    $result = mysqli_query($conn, $sql) or die('MySQL query error'); //對目標資料庫進行查詢
 
-                  while($row = mysqli_fetch_array($result)){
-                    echo "<tr>";
-                    echo "<td>".$row['roomNum']."</td>";
-                    echo "<td>".$row['name']."</td>";
-                    echo "<td>".$row['id']."</td>";
-                    echo "<td>".$row['phone']."</td>";
-                    echo "<td>".$row['date']."</td>";
-                    echo "</tr><br>";
+                    while($row = mysqli_fetch_array($result)){
+                      echo "<tr>";
+                      echo "<td>".$row['roomNum']."</td>";
+                      echo "<td>".$row['name']."</td>";
+                      echo "<td>".$row['id']."</td>";
+                      echo "<td>".$row['phone']."</td>";
+                      echo "<td>".$row['date']."</td>";
+                      echo "</tr><br>";
 
+                    }
+                  }
+                  else{
+                    echo '對不起，無權訪問3s後自動跳轉到登錄頁面';
+		                echo '<meta http-equiv="refresh" content="3;url=./login.html">';
                   }
                 ?>
                 </tbody>
@@ -66,5 +72,12 @@
         </div>
     </article>
 </body>
+
+<script>
+  $(document).ready(function(){
+     $("header").load("header.html");
+     $("nav").load("nav.html");
+  });
+</script>
 
 </html>

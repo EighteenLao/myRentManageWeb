@@ -69,20 +69,20 @@
 
                     if(array_key_exists('searchBtn', $_POST)){
                         $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
-                            $result = mysqli_query($conn, $sql) or die('MySQL query error');
-                            while($row = mysqli_fetch_array($result)){
-                                echo '修改對象' . " <br>";
-                                echo $row['roomNum'] . " ";
-                                echo $row['name'] . " ";
-                                echo $row['id'] . " ";
-                                echo $row['phone'] . " ";
-                                echo $row['date'] . " <br>";
-                            }
+                        $result = mysqli_query($conn, $sql) or die('MySQL query error');
+                        $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。
+                      
+                        echo $row['roomNum'] . " ";
+                        echo $row['name'] . " ";
+                        echo $row['id'] . " ";
+                        echo $row['phone'] . " ";
+                        echo $row['date'] . " <br>";
+                       
                     }
 
                     if(array_key_exists('sendTextBtn', $_POST)) {
                         if($roomNum == NULL){
-                            echo "<script>alert('無輸入房號')</script>";
+                            echo "<script>alert('無輸入房號或修改選項')</script>";
                         }
                         else{
                             $editItem = $_POST['editItem'];
@@ -94,31 +94,32 @@
                             //確認建立成功
                             $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
                             $result = mysqli_query($conn, $sql) or die('MySQL query error');
-                            while($row = mysqli_fetch_array($result)){
-                                echo "<br>修改成功<br>";
+                            $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。
+                           
+                            echo "<br>修改成功<br>";
 
-                                echo "<br<table border=\1\">";
-                                echo "<thead>";
-                                echo "<tr>";
-                                echo "<th>房號</th>";
-                                echo "<th>姓名</th>";
-                                echo "<th>身分證字號</th>";
-                                echo "<th>電話</th>";
-                                echo "<th>入住時間</th>";
-                                echo "</tr>";
-                                echo "</thead>";
-                                
-                                echo "<tbody>";
-                                echo "<tr>";
-                                echo "<td>".$row['roomNum']."</td>";
-                                echo "<td>".$row['name']."</td>";
-                                echo "<td>".$row['id']."</td>";
-                                echo "<td>".$row['phone']."</td>";
-                                echo "<td>".$row['date']."</td>";
-                                echo "</tr>";
-                                echo "</tbody>";
-                                echo "</table><br>";
-                            }
+                            echo "<table border=\1\">";
+                            echo "<thead>";
+                            echo "<tr>";
+                            echo "<th>房號</th>";
+                            echo "<th>姓名</th>";
+                            echo "<th>身分證字號</th>";
+                            echo "<th>電話</th>";
+                            echo "<th>入住時間</th>";
+                            echo "</tr>";
+                            echo "</thead>";
+                            
+                            echo "<tbody>";
+                            echo "<tr>";
+                            echo "<td>".$row['roomNum']."</td>";
+                            echo "<td>".$row['name']."</td>";
+                            echo "<td>".$row['id']."</td>";
+                            echo "<td>".$row['phone']."</td>";
+                            echo "<td>".$row['date']."</td>";
+                            echo "</tr>";
+                            echo "</tbody>";
+                            echo "</table><br>";
+                            
                         }
                     }
                 
@@ -133,5 +134,4 @@
 
     </article>
 </body>
-
 </html>
