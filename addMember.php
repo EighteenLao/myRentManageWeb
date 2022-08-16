@@ -103,8 +103,7 @@
                     }
                 }
                 else{
-                    echo '對不起，您無權訪問，3s後自動跳轉到登錄頁面';
-		                echo '<meta http-equiv="refresh" content="3;url=./login.html">';
+                    header("Location:login.html");
                 }
             ?>
         </div>

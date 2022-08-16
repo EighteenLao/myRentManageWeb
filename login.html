@@ -34,15 +34,15 @@
       <!-- Icon -->
       <div class="fadeIn first">
         <img src="iconImg/P_20180413_145455.jpg" id="icon" alt="User Icon"  />
-        <h1>套房管理系統登入</h1>
+        <h1>套房管理系統</h1>
       </div>
   
       <!-- Login Form -->
-      <!--<form method="POST" action="http://127.0.0.1/myRentManageWeb/verify.php">-->
       <!--onsubmit:提交表單所執行的js function(這邊的function為阻止form表單提交事件)-->
-      <!--action: 表單資料送往的路徑(##為同一頁面上)-->
+      <!--action: data send path(##為同一頁面上)-->
+      <!--<form method="POST" action="http://127.0.0.1/myRentManageWeb/verify.php">-->
       <form id="form1" onsubmit="return false" action="##" method="post">   
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" autocomplete="off">
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
         <input type="submit" class="fadeIn fourth" value="Log In" onclick="LoginUser()">
       </form>
