@@ -15,7 +15,7 @@
   if($user && $password){
     session_start();
 
-    $sql = "SELECT password FROM  loginadmin WHERE user = \"".$reUser."\" and password = \"".$rePassword."\";";
+    $sql = "SELECT * FROM  loginadmin WHERE user = \"".$reUser."\" and password = \"".$rePassword."\";";
     $result = mysqli_query($conn, $sql) or die('MySQL query error');  //mysqli_query:某資料庫中讀取所有的資料表
     $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。
     
@@ -27,6 +27,7 @@
     else{
       echo '[{"result":"登入失敗",
               "link":"http://127.0.0.1/myRentManageWeb/login.html"}]';
+      $_SESSION['is_Login'] = "false";
     }
   }
   else{
@@ -35,7 +36,3 @@
   }
 
 ?>
-
-
-
-

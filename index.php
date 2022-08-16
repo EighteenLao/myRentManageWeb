@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>房客管理系統</title>
 
@@ -10,7 +10,6 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     
-
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/nav.css">
     <script src="js/loadingHeaderAndNav.js"></script>
@@ -43,13 +42,14 @@
                     </tr>
                 </thead>
                 <tbody>
+
                 <?php
                   session_start();
                   if(isset($_SESSION['is_Login'])&& $_SESSION['is_Login'] == "true"){
                     require_once('connect.php');
 
-                    $sql = "SELECT * FROM member"; //SQL語法
-                    $result = mysqli_query($conn, $sql) or die('MySQL query error'); //對目標資料庫進行查詢
+                    $sql = "SELECT * FROM member";
+                    $result = mysqli_query($conn, $sql) or die('MySQL query error');
 
                     while($row = mysqli_fetch_array($result)){
                       echo "<tr>";
@@ -63,21 +63,15 @@
                     }
                   }
                   else{
-                    echo '對不起，無權訪問3s後自動跳轉到登錄頁面';
+                    echo '對不起，您無權訪問，3s後自動跳轉到登錄頁面';
 		                echo '<meta http-equiv="refresh" content="3;url=./login.html">';
                   }
                 ?>
+                
                 </tbody>
             </table>
         </div>
     </article>
 </body>
-
-<script>
-  $(document).ready(function(){
-     $("header").load("header.html");
-     $("nav").load("nav.html");
-  });
-</script>
 
 </html>

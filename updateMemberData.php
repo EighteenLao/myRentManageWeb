@@ -61,6 +61,8 @@
 
         <div class="displayInfo">
             <?php
+            session_start();
+            if(isset($_SESSION['is_Login'])&& $_SESSION['is_Login'] == "true"){
                 // 連線到資料庫\
                 require_once('connect.php');
                 
@@ -70,44 +72,10 @@
                     if(array_key_exists('searchBtn', $_POST)){
                         $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
                         $result = mysqli_query($conn, $sql) or die('MySQL query error');
-                        $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。
-                      
-                        echo $row['roomNum'] . " ";
-                        echo $row['name'] . " ";
-                        echo $row['id'] . " ";
-                        echo $row['phone'] . " ";
-                        echo $row['date'] . " <br>";
-                       
-                        while($row = mysqli_fetch_array($result)){
-                            echo '修改對象' . " <br>";
-                            echo $row['roomNum'] . " ";
-                            echo $row['name'] . " ";
-                            echo $row['id'] . " ";
-                            echo $row['phone'] . " ";
-                            echo $row['date'] . " <br>";
-                        }
+                        $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。    
 
-                    }
-
-                    if(array_key_exists('sendTextBtn', $_POST)) {
-                        if($roomNum == NULL){
-                            echo "<script>alert('無輸入房號或修改選項')</script>";
-                        }
-                        else{
-                            $editItem = $_POST['editItem'];
-                            $editText=$_POST["updateText"];
-                            
-                            $sql1 = "UPDATE `member` SET $editItem =\"".$editText."\" WHERE roomNum = \"".$roomNum."\";";
-                            $result1 = mysqli_query($conn, $sql1) or die('MySQL query error');
-
-                            //確認建立成功
-                            $sql = "SELECT * FROM member WHERE roomNum = \"".$roomNum."\";";
-                            $result = mysqli_query($conn, $sql) or die('MySQL query error');
-                            $row = $result->fetch_assoc();  //從結果集中取得一行作為key數組。
-
-                            echo "<script>alert('修改成功')</script>";
-
-                            echo "<br><table border=\1\">";
+                        if($row){
+                            echo "<table border=\1\">";
                             echo "<thead>";
                             echo "<tr>";
                             echo "<th>房號</th>";
@@ -128,6 +96,25 @@
                             echo "</tr>";
                             echo "</tbody>";
                             echo "</table><br>";
+                        }
+                        else{
+                            echo "查無對象";
+                        }
+                       
+                    }
+
+                    if(array_key_exists('sendTextBtn', $_POST)) {
+                        if($roomNum == NULL){
+                            echo "<script>alert('無輸入房號或修改選項')</script>";
+                        }
+                        else{
+                            $editItem = $_POST['editItem'];
+                            $editText=$_POST["updateText"];
+                            
+                            $sql1 = "UPDATE `member` SET $editItem =\"".$editText."\" WHERE roomNum = \"".$roomNum."\";";
+                            $result1 = mysqli_query($conn, $sql1) or die('MySQL query error');
+
+                            echo "<script>alert('修改成功')</script>";
                             
                         }
                     }
@@ -137,7 +124,11 @@
                 if(array_key_exists('exit', $_POST)) {
                     header("Location: index.php");
                 }      
-                
+            }
+            else{
+                echo '對不起，您無權訪問，3s後自動跳轉到登錄頁面';
+                    echo '<meta http-equiv="refresh" content="3;url=./login.html">';
+            }   
             ?>
         </div>
 
